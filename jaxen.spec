@@ -41,14 +41,14 @@
 %bcond_with        manual
 
 Name:           jaxen
-Version:        1.1
-Release:        %mkrel 1.2.1
+Version:        1.1.1
+Release:        %mkrel 1.1
 Epoch:          0
 Summary:        An XPath engine written in Java
 License:        BSD
 Url:            http://jaxen.codehaus.org/
 Group:          Development/Java
-Source0:        http://dist.codehaus.org/jaxen/distributions/jaxen-1.1-src.tar.gz
+Source0:        http://dist.codehaus.org/jaxen/distributions/jaxen-1.1.1-src.tar.gz
 Source6         http://prdownloads.sourceforge.net/dom4j/dom4j-%{dom4jver}.tar.gz
 %if %with maven
 Source1:        pom-maven2jpp-depcat.xsl
