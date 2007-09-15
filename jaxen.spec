@@ -42,7 +42,7 @@
 
 Name:           jaxen
 Version:        1.1.1
-Release:        %mkrel 1.2
+Release:        %mkrel 1.3
 Epoch:          0
 Summary:        An XPath engine written in Java
 License:        BSD
@@ -88,8 +88,6 @@ Provides:       jaxen-bootstrap <= %{version}-%{release}
 Obsoletes:      jaxen-bootstrap <= %{version}-%{release}
 %if %{gcj_support}
 BuildRequires:  java-gcj-compat-devel
-Requires(post): java-gcj-compat
-Requires(postun): java-gcj-compat
 %else
 BuildArch:      noarch
 BuildRequires:  java-devel >= 0:1.4.2
