@@ -42,7 +42,7 @@
 
 Name:           jaxen
 Version:        1.1.1
-Release:        %mkrel 1.3
+Release:        %mkrel 1.4
 Epoch:          0
 Summary:        An XPath engine written in Java
 License:        BSD
@@ -66,7 +66,7 @@ Requires:       jdom >= 0:1.0-0.rc1.1jpp
 Requires:       xalan-j2
 Requires:       xerces-j2
 Requires:       xom
-BuildRequires:  ant >= 0:1.6, jpackage-utils >= 0:1.6, junit, ant-junit
+BuildRequires:  ant >= 0:1.6, java-rpmbuild >= 0:1.6, junit, ant-junit
 BuildRequires:  java-devel
 %if %with maven
 BuildRequires:  maven >= 0:1.1, saxon, saxon-scripts
