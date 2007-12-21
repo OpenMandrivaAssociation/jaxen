@@ -92,6 +92,7 @@ BuildRequires:  java-gcj-compat-devel
 BuildArch:      noarch
 BuildRequires:  java-devel >= 0:1.4.2
 %endif
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 Jaxen is an XPath engine written in Java to work against a variety of XML
