@@ -49,7 +49,8 @@ License:        BSD
 Url:            http://jaxen.codehaus.org/
 Group:          Development/Java
 Source0:        http://dist.codehaus.org/jaxen/distributions/jaxen-1.1.2.tar.gz
-Source6         http://prdownloads.sourceforge.net/dom4j/dom4j-%{dom4jver}.tar.gz
+Source6:        http://prdownloads.sourceforge.net/dom4j/dom4j-%{dom4jver}.tar.gz
+Source7:        build.xml
 %if %with maven
 Source1:        pom-maven2jpp-depcat.xsl
 Source2:        pom-maven2jpp-newdepmap.xsl
@@ -132,7 +133,7 @@ Group:          Development/Java
 # '--without manual'
 
 %if %without bootstrap
-%setup -q
+%setup -q -a 7
 %else
 %setup -q -a 6
 %patch0
