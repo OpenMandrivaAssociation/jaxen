@@ -42,7 +42,7 @@
 
 Name:           jaxen
 Version:        1.1.2
-Release:        %mkrel 1.0
+Release:        %mkrel 1.1
 Epoch:          0
 Summary:        An XPath engine written in Java
 License:        BSD
