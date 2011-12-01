@@ -221,44 +221,44 @@ xom \
 %endif
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 # jars
-install -d -m 755 $RPM_BUILD_ROOT%{_javadir}
+install -d -m 755 %{buildroot}%{_javadir}
 install -m 644 target/%{name}-%{version}.jar \
-$RPM_BUILD_ROOT%{_javadir}/%{name}-%{version}.jar
+%{buildroot}%{_javadir}/%{name}-%{version}.jar
 
-(cd $RPM_BUILD_ROOT%{_javadir} && for jar in *-%{version}*; do \
+(cd %{buildroot}%{_javadir} && for jar in *-%{version}*; do \
 ln -sf ${jar} ${jar/-%{version}/}; done)
 
 # javadoc
-install -d -m 755 $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
+install -d -m 755 %{buildroot}%{_javadocdir}/%{name}-%{version}
 %if %with maven
-cp -pr target/docs/apidocs/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
+cp -pr target/docs/apidocs/* %{buildroot}%{_javadocdir}/%{name}-%{version}
 rm -rf target/docs/apidocs
 %else
-cp -pr dist/docs/api/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
+cp -pr dist/docs/api/* %{buildroot}%{_javadocdir}/%{name}-%{version}
 %endif
-ln -s %{name}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{name}
+ln -s %{name}-%{version} %{buildroot}%{_javadocdir}/%{name}
 
 # manual
 %if %with maven
 %if %with manual
-install -d -m 755 $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
-cp -pr target/docs/* $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
+install -d -m 755 %{buildroot}%{_docdir}/%{name}-%{version}
+cp -pr target/docs/* %{buildroot}%{_docdir}/%{name}-%{version}
 %endif
 %endif
 
 # demo
-install -d -m 755 $RPM_BUILD_ROOT%{_datadir}/%{name}-%{version}/samples
-cp -pr src/java/samples/* $RPM_BUILD_ROOT%{_datadir}/%{name}-%{version}/samples
+install -d -m 755 %{buildroot}%{_datadir}/%{name}-%{version}/samples
+cp -pr src/java/samples/* %{buildroot}%{_datadir}/%{name}-%{version}/samples
 
 %if %{gcj_support}
 %{_bindir}/aot-compile-rpm
 %endif
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files
 %defattr(0644,root,root,0755)
