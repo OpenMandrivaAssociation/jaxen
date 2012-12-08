@@ -221,44 +221,44 @@ xom \
 %endif
 
 %install
-rm -rf %{buildroot}
+rm -rf $RPM_BUILD_ROOT
 
 # jars
-install -d -m 755 %{buildroot}%{_javadir}
+install -d -m 755 $RPM_BUILD_ROOT%{_javadir}
 install -m 644 target/%{name}-%{version}.jar \
-%{buildroot}%{_javadir}/%{name}-%{version}.jar
+$RPM_BUILD_ROOT%{_javadir}/%{name}-%{version}.jar
 
-(cd %{buildroot}%{_javadir} && for jar in *-%{version}*; do \
+(cd $RPM_BUILD_ROOT%{_javadir} && for jar in *-%{version}*; do \
 ln -sf ${jar} ${jar/-%{version}/}; done)
 
 # javadoc
-install -d -m 755 %{buildroot}%{_javadocdir}/%{name}-%{version}
+install -d -m 755 $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
 %if %with maven
-cp -pr target/docs/apidocs/* %{buildroot}%{_javadocdir}/%{name}-%{version}
+cp -pr target/docs/apidocs/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
 rm -rf target/docs/apidocs
 %else
-cp -pr dist/docs/api/* %{buildroot}%{_javadocdir}/%{name}-%{version}
+cp -pr dist/docs/api/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
 %endif
-ln -s %{name}-%{version} %{buildroot}%{_javadocdir}/%{name}
+ln -s %{name}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{name}
 
 # manual
 %if %with maven
 %if %with manual
-install -d -m 755 %{buildroot}%{_docdir}/%{name}-%{version}
-cp -pr target/docs/* %{buildroot}%{_docdir}/%{name}-%{version}
+install -d -m 755 $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
+cp -pr target/docs/* $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
 %endif
 %endif
 
 # demo
-install -d -m 755 %{buildroot}%{_datadir}/%{name}-%{version}/samples
-cp -pr src/java/samples/* %{buildroot}%{_datadir}/%{name}-%{version}/samples
+install -d -m 755 $RPM_BUILD_ROOT%{_datadir}/%{name}-%{version}/samples
+cp -pr src/java/samples/* $RPM_BUILD_ROOT%{_datadir}/%{name}-%{version}/samples
 
 %if %{gcj_support}
 %{_bindir}/aot-compile-rpm
 %endif
 
 %clean
-rm -rf %{buildroot}
+rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(0644,root,root,0755)
@@ -284,3 +284,109 @@ rm -rf %{buildroot}
 %files demo
 %defattr(0644,root,root,0755)
 %{_datadir}/%{name}-%{version}
+
+
+%changelog
+* Wed May 04 2011 Oden Eriksson <oeriksson@mandriva.com> 0:1.1.2-1.3mdv2011.0
++ Revision: 665819
+- mass rebuild
+
+* Fri Dec 03 2010 Oden Eriksson <oeriksson@mandriva.com> 0:1.1.2-1.2mdv2011.0
++ Revision: 606075
+- rebuild
+
+* Wed Mar 17 2010 Oden Eriksson <oeriksson@mandriva.com> 0:1.1.2-1.1mdv2010.1
++ Revision: 523068
+- rebuilt for 2010.1
+
+* Wed Feb 18 2009 Jérôme Soyer <saispo@mandriva.org> 0:1.1.2-1.0mdv2009.1
++ Revision: 342367
+- New upstream release
+- New upstream release
+
+* Fri Dec 21 2007 Olivier Blin <oblin@mandriva.com> 0:1.1.1-1.4mdv2009.0
++ Revision: 136503
+- restore BuildRoot
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - kill re-definition of %%buildroot on Pixel's request
+
+* Sun Dec 16 2007 Anssi Hannula <anssi@mandriva.org> 0:1.1.1-1.4mdv2008.1
++ Revision: 120932
+- buildrequire java-rpmbuild, i.e. build with icedtea on x86(_64)
+
+* Sat Sep 15 2007 Anssi Hannula <anssi@mandriva.org> 0:1.1.1-1.3mdv2008.0
++ Revision: 87427
+- rebuild to filter out autorequires of GCJ AOT objects
+- remove unnecessary Requires(post) on java-gcj-compat
+
+* Sun Sep 09 2007 Pascal Terjan <pterjan@mandriva.org> 0:1.1.1-1.2mdv2008.0
++ Revision: 82794
+- update to new version
+
+* Thu May 17 2007 David Walluck <walluck@mandriva.org> 0:1.1.1-1.1mdv2008.0
++ Revision: 27665
+- 1.1.1
+
+* Mon Apr 23 2007 David Walluck <walluck@mandriva.org> 0:1.1-1.2.1mdv2008.0
++ Revision: 17680
+- Import jaxen
+
+
+
+* Mon Apr 23 2007 David Walluck <walluck@mandriva.org> 0:1.1-1.2.1mdv2008.0
+- release
+
+* Tue Feb 20 2007 Vivek Lakshmanan <vivekl@redhat.com> 0:1.1-1jpp.2.fc7
+- Add build-requires on ant-junit
+
+* Mon Feb 19 2007 Andrew Overholt <overholt@redhat.com> 0:1.1-1jpp.1
+- Add explicit version-release on Provides and Obsoletes
+- Untabify
+- Remove %%ghost on versioned javadoc dir
+- Just include %%{_javadocdir}/* for javadoc package
+
+* Wed Feb 14 2007 Andrew Overholt <overholt@redhat.com> 0:1.1-1jpp.1
+- Bump to 1.1 final
+- Make release Xjpp.Y%%{?dist}
+- Remove Distribution, Vendor
+- Fix Group
+- Remove cleaning of buildroot from beginning of %%prep
+- Add cleaning of buildroot to beginning of %%install
+- Remove %%section free
+- Use Fedora buildroot
+
+* Sun Feb 26 2006 Fernando Nasser <fnasser@redhat.com> - 0:1.1-0.b7.4jpp
+- Rebuild for JPP 1.7
+
+* Wed Feb 15 2006 Ralph Apel <r.apel@r-apel.de> 0:1.1-0.b7.3jpp
+- Insert Copyright notice
+
+* Mon Feb 13 2006 Ralph Apel <r.apel@r-apel.de> 0:1.1-0.b7.2jpp
+- Adapt to maven-1.1
+- Create option to build without maven
+
+* Wed Aug 17 2005 Ralph Apel <r.apel@r-apel.de> 0:1.1-0.b7.1jpp
+- Upgrade to 1.1-beta-7
+- Now mavenized
+- Requiring dom4j >= 1.6.1
+- rpmbuild option to inhibit build of manual (needs newer maven)
+
+* Thu Sep 09 2004 Ralph Apel <r.apel@r-apel.de> 0:1.1-0.b2.1jpp
+- Upgrade to 1.1-beta-2
+- Drop saxpath requirement as saxpath is now included in jaxen
+
+* Sun Aug 23 2004 Randy Watler <rwatler at finali.com> - 0:1.0-4jpp
+- Rebuild with ant-1.6.2
+* Mon Jan 19 2004 Ralph Apel <r.apel@r-apel.de> 0:1.0-3jpp
+- build against dom4j-1.4-1jpp
+- introduce manual and demo subpackages
+- patch org.jaxen.dom4j.DocumentNavigatorTest
+- include LICENSE in main package
+- run tests during build
+
+* Thu Jan 15 2004 Ralph Apel <r.apel@r-apel.de> 0:1.0-2jpp
+- activate support for dom4j by renaming lib/dom4j-core.jar to .zip
+
+* Sun May 04 2003 David Walluck <david@anti-microsoft.org> 0:1.0-1jpp
+- release
