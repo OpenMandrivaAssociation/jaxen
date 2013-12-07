@@ -43,7 +43,7 @@
 Summary:	An XPath engine written in Java
 Name:		jaxen
 Version:	1.1.2
-Release:	3
+Release:	4
 License:	BSD
 Url:		http://jaxen.codehaus.org/
 Group:		Development/Java
