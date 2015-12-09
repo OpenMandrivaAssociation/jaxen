@@ -31,7 +31,7 @@
 
 Name:           jaxen
 Version:        1.1.6
-Release:        1.1%{?dist}
+Release:        1.2
 Epoch:          0
 Summary:        An XPath engine written in Java
 License:        BSD
@@ -41,7 +41,7 @@ Source0:        http://dist.codehaus.org/jaxen/distributions/%{name}-%{version}-
 BuildRequires:  maven-local
 BuildRequires:  mvn(dom4j:dom4j)
 BuildRequires:  mvn(jdom:jdom)
-BuildRequires:  mvn(org.sonatype.oss:oss-parent)
+BuildRequires:  mvn(org.sonatype.oss:oss-parent:pom:)
 BuildRequires:  mvn(xerces:xercesImpl)
 BuildRequires:  mvn(xml-apis:xml-apis)
 
