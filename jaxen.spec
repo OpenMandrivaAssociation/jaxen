@@ -31,7 +31,7 @@
 
 Name:           jaxen
 Version:        1.1.6
-Release:        1.2
+Release:        1.3
 Epoch:          0
 Summary:        An XPath engine written in Java
 License:        BSD
