@@ -35,7 +35,7 @@ Release:        1.3
 Epoch:          0
 Summary:        An XPath engine written in Java
 License:        BSD
-URL:            http://jaxen.codehaus.org/
+URL:            https://jaxen.codehaus.org/
 Source0:        http://dist.codehaus.org/jaxen/distributions/%{name}-%{version}-src.tar.gz
 
 BuildRequires:  maven-local
